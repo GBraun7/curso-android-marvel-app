@@ -5,6 +5,7 @@ import com.braun.gustavo.core.data.repository.CharactersRemoteDataSource
 import com.braun.gustavo.core.data.repository.CharactersRepository
 import com.braun.gustavo.core.domain.model.Character
 import com.example.marvelapp.framework.network.response.DataWrapperResponse
+import com.example.marvelapp.framework.paging.CharactersPagingSource
 import javax.inject.Inject
 
 class CharactersRepositoryImpl @Inject constructor(
@@ -12,6 +13,6 @@ class CharactersRepositoryImpl @Inject constructor(
 ) : CharactersRepository {
 
     override fun getCharacters(query: String): PagingSource<Int, Character> {
-        return CharactersPaging()
+        return CharactersPagingSource(remoteDataSource, query)
     }
 }

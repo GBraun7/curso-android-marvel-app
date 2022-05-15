@@ -1,7 +1,16 @@
 package com.example.marvelapp.framework.network.response
 
+import com.braun.gustavo.core.domain.model.Character
+
 data class CharacterResponse(
     val id: String,
     val name: String,
-    val thumbnailResponse: ThumbnailResponse,
+    val thumbnail: ThumbnailResponse,
 )
+
+fun CharacterResponse.toCharacterModel(): Character {
+    return Character(
+        name = this.name,
+        imageUrl = "${this.thumbnail.path}.${this.thumbnail.extension}"
+    )
+}
